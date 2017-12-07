@@ -33,4 +33,14 @@ public class OrderService
     {
         return orders;
     }
+
+    public int updateOrder(int id, int quantity)
+    {
+        if (id < orders.size())
+        {
+            orders.get(id).setQuantity(quantity);
+            return id;
+        }
+        return -1;
+    }
 }

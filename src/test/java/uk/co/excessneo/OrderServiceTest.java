@@ -41,4 +41,16 @@ public class OrderServiceTest
     {
         assertEquals(1, orderService.getOrders().size());
     }
+
+    @Test
+    public void testUpdateOrder()
+    {
+        assertEquals(0, orderService.updateOrder(0, 10));
+    }
+
+    @Test
+    public void testInvalidUpdateOrder()
+    {
+        assertEquals(-1, orderService.updateOrder(1, 10));
+    }
 }
