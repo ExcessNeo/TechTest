@@ -43,15 +43,15 @@ public class OrderServiceTest
     }
 
     @Test
-    public void testUpdateOrder()
+    public void testUpdateOrder() throws InvalidOrderReferenceException
     {
         assertEquals(0, orderService.updateOrder(0, 10));
     }
 
-    @Test
-    public void testInvalidUpdateOrder()
+    @Test(expected = InvalidOrderReferenceException.class)
+    public void testInvalidUpdateOrder() throws InvalidOrderReferenceException
     {
-        assertEquals(-1, orderService.updateOrder(1, 10));
+        orderService.updateOrder(1, 10);
     }
 
     @Test

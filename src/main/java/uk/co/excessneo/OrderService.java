@@ -34,14 +34,22 @@ public class OrderService
         return orders;
     }
 
-    public int updateOrder(int id, int quantity)
+    public int updateOrder(int id, int quantity) throws InvalidOrderReferenceException
     {
         if (id < orders.size())
         {
-            orders.get(id).setQuantity(quantity);
-            return id;
+            Order order = orders.get(id);
+            if (!order.isDispatched())
+            {
+                order.setQuantity(quantity);
+            }
+            else
+            {
+                throw new InvalidOrderReferenceException("Dispatched orders cannot be updated");
+            }
+            return order.getId();
         }
-        return -1;
+        throw new InvalidOrderReferenceException("Invalid order id");
     }
 
     public void fulfilOrder(int id) throws InvalidOrderReferenceException

@@ -40,9 +40,17 @@ public class OrderController
     }
 
     @RequestMapping("/updateOrder")
-    public int updateOrder(@RequestParam("id") int id, @RequestParam("quantity") int quantity)
+    public ResponseEntity<Integer> updateOrder(@RequestParam("id") int id, @RequestParam("quantity") int quantity)
     {
-        return orderService.updateOrder(id, quantity);
+        try
+        {
+            return new ResponseEntity<Integer>(orderService.updateOrder(id, quantity), HttpStatus.OK);
+        }
+        catch (InvalidOrderReferenceException e)
+        {
+            return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @RequestMapping("/fulfilOrder")
