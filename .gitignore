@@ -1,0 +1,7 @@
+*.class
+*.jar
+hs_err_pid*
+*.iml
+atlassian-ide-plugin.xml
+**/target/*
+.idea/*
