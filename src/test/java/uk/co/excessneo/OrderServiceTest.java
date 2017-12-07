@@ -53,4 +53,25 @@ public class OrderServiceTest
     {
         assertEquals(-1, orderService.updateOrder(1, 10));
     }
+
+    @Test
+    public void testFulfilOrder()
+    {
+        InvalidOrderReferenceException exception = null;
+        try
+        {
+            orderService.fulfilOrder(0);
+        }
+        catch (InvalidOrderReferenceException e)
+        {
+            exception = e;
+        }
+        assertEquals(null, exception);
+    }
+
+    @Test(expected = InvalidOrderReferenceException.class)
+    public void testInvalidFulfilOrder() throws InvalidOrderReferenceException
+    {
+        orderService.fulfilOrder(1);
+    }
 }

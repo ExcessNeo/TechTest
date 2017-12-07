@@ -43,4 +43,16 @@ public class OrderService
         }
         return -1;
     }
+
+    public void fulfilOrder(int id) throws InvalidOrderReferenceException
+    {
+        if (id < orders.size())
+        {
+            orders.get(id).setDispatched(true);
+        }
+        else
+        {
+            throw new InvalidOrderReferenceException("Invalid order id");
+        }
+    }
 }
