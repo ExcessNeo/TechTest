@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,13 +43,12 @@ public class OrderController
     {
         try
         {
-            return new ResponseEntity<Integer>(orderService.updateOrder(id, quantity), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.updateOrder(id, quantity), HttpStatus.OK);
         }
         catch (InvalidOrderReferenceException e)
         {
-            return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @RequestMapping("/fulfilOrder")
@@ -59,11 +57,11 @@ public class OrderController
         try
         {
             orderService.fulfilOrder(id);
-            return new ResponseEntity<Order>(orderService.getOrder(id), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.getOrder(id), HttpStatus.OK);
         }
         catch (InvalidOrderReferenceException e)
         {
-            return new ResponseEntity<Order>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }
